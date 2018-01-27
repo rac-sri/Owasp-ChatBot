@@ -4,6 +4,8 @@ let translate = require('../service/translate')
 module.exports = function(controller) {
 
     controller.hears(['translate (.*)'], 'message_received', function(bot, message) {
+        bot.startTyping(message);
+    
         let sentence_to_translate = message.match[1];
 
         bot.startConversation(message, function(err, convo) {

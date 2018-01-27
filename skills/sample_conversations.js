@@ -8,8 +8,14 @@ In this example, Botkit hears a keyword, then asks a question. Different paths
 through the conversation are chosen based on the user's response.
 
 */
+let responses = require('../responses/responses')
+
 
 module.exports = function(controller) {
+
+    controller.hears(['^hello'], 'message_received', function(bot, message) {
+        bot.reply(message, responses.helloMessage);
+    });
 
     controller.hears(['color'], 'message_received', function(bot, message) {
 

@@ -19,6 +19,6 @@ module.exports = {
 	      }
 	    ]
 	}, 
-	helloMessage: "Hey. I'm Translate It. I can help you translate sentences to your favourite langs.\nDon't worry about spelling errors ;)",
+	helloMessage: "Hey. I'm Translate It.\nI can help you translate sentences to your favourite langs ^_^.\nDon't worry about spelling errors ;)",
 	help: "Please send something similar to:\n\"translate i want to speak French\""
 }
