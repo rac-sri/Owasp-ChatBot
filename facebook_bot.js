@@ -59,9 +59,6 @@ require(__dirname + '/components/onboarding.js')(controller);
 // Load in some helpers that make running Botkit on Glitch.com better
 require(__dirname + '/components/plugin_glitch.js')(controller);
 
-// enable advanced botkit studio metrics
-require('botkit-studio-metrics')(controller);
-
 var normalizedPath = require("path").join(__dirname, "skills");
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
   require("./skills/" + file)(controller);
@@ -70,10 +67,8 @@ require("fs").readdirSync(normalizedPath).forEach(function(file) {
 
 function usage_tip() {
     console.log('~~~~~~~~~~');
-    console.log('Botkit Studio Starter Kit');
     console.log('Execute your bot application like this:');
-    console.log('page_token=<MY PAGE TOKEN> verify_token=<MY VERIFY TOKEN> studio_token=<MY BOTKIT STUDIO TOKEN> node bot.js');
+    console.log('page_token=<MY PAGE TOKEN> verify_token=<MY VERIFY TOKEN> node bot.js');
     console.log('Get Facebook token here: https://developers.facebook.com/docs/messenger-platform/implementation')
-    console.log('Get a Botkit Studio token here: https://studio.botkit.ai/')
     console.log('~~~~~~~~~~');
 }
