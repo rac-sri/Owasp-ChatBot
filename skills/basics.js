@@ -1,26 +1,17 @@
-/*
 
-WHAT IS THIS?
-
-This module demonstrates simple uses of Botkit's conversation system.
-
-In this example, Botkit hears a keyword, then asks a question. Different paths
-through the conversation are chosen based on the user's response.
-
-*/
 let responses = require('../responses/responses')
 
 
 module.exports = function(controller) {
 
-    controller.hears(['^hello'], 'message_received', function(bot, message) {
+    controller.hears(['hello (.*)' ,'.hi (.*)'], 'message_received', function(bot, message) {
         bot.reply(message, responses.helloMessage);
     });
 
-    controller.hears(['color'], 'message_received', function(bot, message) {
+    controller.hears(['(.*) color (.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
-            convo.say('This is an example of using convo.ask with a single callback.');
+           // convo.say('This is an example of using convo.ask with a single callback.');
 
             convo.ask('What is your favorite color?', function(response, convo) {
 
@@ -30,22 +21,32 @@ module.exports = function(controller) {
             });
         });
 
+    }); 
+
+    controller.hears(['(.*)create(.*)'], 'message_received', function(bot, message) {
+
+        bot.startConversation(message, function(err, convo) {
+                convo.say('Hello there , I am Owasp bot and I was created by Rachit Srivastava');
+                convo.next();
+        });
+
     });
 
 
-    controller.hears(['question'], 'message_received', function(bot, message) {
+
+    controller.hears(['(.*)question (.*)'], 'message_received', function(bot, message) {
 
         bot.createConversation(message, function(err, convo) {
 
             // create a path for when a user says YES
             convo.addMessage({
-                    text: 'How wonderful.',
+                    text: 'How wonderful!!\nSo owasp is a ....... ,'
             },'yes_thread');
 
             // create a path for when a user says NO
             // mark the conversation as unsuccessful at the end
             convo.addMessage({
-                text: 'Cheese! It is not for everyone.',
+                text: 'Oh!! I guess you are already quite familiar with Owasp then :)',
                 action: 'stop', // this marks the converation as unsuccessful
             },'no_thread');
 
@@ -57,7 +58,7 @@ module.exports = function(controller) {
             },'bad_response');
 
             // Create a yes/no question in the default thread...
-            convo.ask('Do you like cheese?', [
+            convo.ask('Do you wanna know more about Owasp??', [
                 {
                     pattern:  bot.utterances.yes,
                     callback: function(response, convo) {
@@ -85,9 +86,8 @@ module.exports = function(controller) {
 
                 if (convo.successful()) {
                     // this still works to send individual replies...
-                    bot.reply(message, 'Let us eat some!');
+                    bot.reply(message, 'Nice talking to you.');
 
-                    // and now deliver cheese via tcp/ip...
                 }
 
             });
