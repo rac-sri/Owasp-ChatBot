@@ -4,7 +4,7 @@ let responses = require('../responses/responses')
 
 module.exports = function(controller) {
 
-    controller.hears(['hello (.*)' ,'.hi (.*)'], 'message_received', function(bot, message) {
+    controller.hears(['hello(.*)' ,'.hi(.*)'], 'message_received', function(bot, message) {
         bot.reply(message, responses.helloMessage);
     });
 
@@ -23,6 +23,15 @@ module.exports = function(controller) {
 
     }); 
 
+
+    controller.hears(['(.*) contact (.*)'], 'message_received', function(bot, message) {
+
+        bot.startConversation(message, function(err, convo) {
+           convo.say('You can contact us via these information:\n Harkrat : 8569036690 \n Sirish:9464823344');
+            });
+        });
+
+        
     controller.hears(['(.*)create(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
@@ -31,6 +40,26 @@ module.exports = function(controller) {
         });
 
     });
+    controller.hears(["my name is (.*)"], 'message_received', function(bot, message) {
+
+        let str = message.replace('my name is ','');
+        bot.startConversation(message, function(err, convo) {
+                convo.say(`Hello ${str} How are you today ?`);
+                convo.next();
+        });
+
+    });
+
+    controller.hears(["what is your name ?"], 'message_received', function(bot, message) {
+
+        let str = message.replace('my name is ','');
+        bot.startConversation(message, function(err, convo) {
+                convo.say("My name is Owaspbot and I'm a Owasp Thapar Student Chapter's chatbot?");
+                convo.next();
+        });
+
+    });
+
 
 
 
