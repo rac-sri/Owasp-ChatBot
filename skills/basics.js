@@ -24,7 +24,7 @@ module.exports = function(controller) {
     }); 
 
 
-    controller.hears(['(.*) contact (.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)contact(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
            convo.say('You can contact us via these information:\n Harkrat : 8569036690 \n Sirish:9464823344');
@@ -123,5 +123,15 @@ module.exports = function(controller) {
         });
 
     });
+    controller.hears(["*"], 'message_received', function(bot, message) {
+
+        let str = message.replace('my name is ','');
+        bot.startConversation(message, function(err, convo) {
+                convo.say("I will get back to you soon :)");
+                convo.next();
+        });
+
+    });
+
 
 };
