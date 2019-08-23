@@ -123,7 +123,7 @@ module.exports = function(controller) {
         });
 
     });
-    controller.hears(["*"], 'message_received', function(bot, message) {
+    controller.hears(["(*.)"], 'message_received', function(bot, message) {
 
         let str = message.replace('my name is ','');
         bot.startConversation(message, function(err, convo) {
