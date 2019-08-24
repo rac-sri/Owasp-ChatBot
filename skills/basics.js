@@ -137,7 +137,7 @@ module.exports = function(controller) {
 
 };
 
-check(message)
+function check(message)
 {
     console.log(message);
     if(message == "(.*)name(.*)")
