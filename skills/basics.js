@@ -4,11 +4,11 @@ let responses = require('../responses/responses')
 
 module.exports = function(controller) {
 
-    controller.hears(['hello(.*)' ,'.hi(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['hello(.*)' ,'hi(.*)'], 'message_received', function(bot, message) {
         bot.reply(message, responses.helloMessage);
     });
 
-    controller.hears(['(.*) color (.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)color(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
            // convo.say('This is an example of using convo.ask with a single callback.');
@@ -40,7 +40,7 @@ module.exports = function(controller) {
         });
 
     });
-    controller.hears(["my name is (.*)"], 'message_received', function(bot, message) {
+    controller.hears(['my name is(.*)'], 'message_received', function(bot, message) {
 
         let str = message.replace('my name is ','');
         bot.startConversation(message, function(err, convo) {
@@ -50,7 +50,7 @@ module.exports = function(controller) {
 
     });
 
-    controller.hears(["what is your name ?"], 'message_received', function(bot, message) {
+    controller.hears(['what is your name(.*)'], 'message_received', function(bot, message) {
 
         let str = message.replace('my name is ','');
         bot.startConversation(message, function(err, convo) {
@@ -63,7 +63,7 @@ module.exports = function(controller) {
 
 
 
-    controller.hears(['(.*)question (.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)question(.*)'], 'message_received', function(bot, message) {
 
         bot.createConversation(message, function(err, convo) {
 
@@ -123,7 +123,7 @@ module.exports = function(controller) {
         });
 
     });
-    controller.hears(["(*.)"], 'message_received', function(bot, message) {
+    controller.hears(["(.)"], 'message_received', function(bot, message) {
 
         let str = message.replace('my name is ','');
         bot.startConversation(message, function(err, convo) {
