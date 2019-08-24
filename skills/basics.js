@@ -40,7 +40,7 @@ module.exports = function(controller) {
         });
 
     });
-    controller.hears(['my name is(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['my(.*)name(.*)is(.*)'], 'message_received', function(bot, message) {
 
         let str = message.replace('my name is ','');
         bot.startConversation(message, function(err, convo) {
