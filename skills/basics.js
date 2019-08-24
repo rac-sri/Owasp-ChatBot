@@ -50,7 +50,8 @@ module.exports = function(controller) {
 
     });
 
-    controller.hears(['your(.*)'] && ['(.*)name(.*)'], 'message_received', function(bot, message) {
+
+    controller.hears((message)=>{check(message)}, 'message_received', function(bot, message) {
 
         let str = message.replace('my name is ','');
         bot.startConversation(message, function(err, convo) {
@@ -135,3 +136,11 @@ module.exports = function(controller) {
 
 
 };
+
+check(message)
+{
+    console.log(message);
+    if(message == "(.*)name(.*)")
+    return true;
+    else return false;
+}
