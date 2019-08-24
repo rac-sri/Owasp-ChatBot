@@ -51,10 +51,10 @@ module.exports = function(controller) {
     });
 
 
-    controller.hears(['(.*)name(.*)' ,'(.*)your name(.*)' ,'(.*)my name(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)name(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
-                convo.say("My name is Owaspbot and I'm a Owasp Thapar Student Chapter's chatbot?");
+                convo.say("My name is Owaspbot and I'm a Owasp Thapar Student Chapter's chatbot.");
                 convo.next();
         });
 
