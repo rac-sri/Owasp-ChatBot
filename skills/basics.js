@@ -51,9 +51,8 @@ module.exports = function(controller) {
     });
 
 
-    controller.hears((message)=>{check(message)}, 'message_received', function(bot, message) {
+    controller.hears(['(.*)name(.*)' ,'(.*)your name(.*)' ,'(.*)my name(.*)'], 'message_received', function(bot, message) {
 
-        let str = message.replace('my name is ','');
         bot.startConversation(message, function(err, convo) {
                 convo.say("My name is Owaspbot and I'm a Owasp Thapar Student Chapter's chatbot?");
                 convo.next();
@@ -125,22 +124,18 @@ module.exports = function(controller) {
 
     });
     controller.hears(['.*'], 'message_received', function(bot, message) {
-
-        let str = message.replace('my name is ','');
-        bot.startConversation(message, function(err, convo) {
                 convo.say("I will get back to you soon :)");
-                convo.next();
         });
 
-    });
+    
 
 
 };
 
-function check(message)
-{
-    console.log(message);
-    if(message == "(.*)name(.*)")
-    return true;
-    else return false;
-}
+// function check(message)
+// {
+//     console.log(message);
+//     if(message == "(.*)name(.*)")
+//     return true;
+//     else return false;
+// }
