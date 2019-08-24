@@ -28,5 +28,8 @@ module.exports = function(webserver, controller) {
             }
         }
     });
+    webserver.get('/', function(req, res) {
+        res.sendFile( __dirname+'/privacyPolicy.html');
+    });
 
 }
