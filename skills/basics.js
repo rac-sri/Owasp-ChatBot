@@ -31,20 +31,16 @@ module.exports = function(controller) {
             });
         });
 
+
+        controller.hears(['(.*)A(.*)', '(.*)B(.*)', '(.*)C(.*)', "(.*)D(.*)", "(.*)E(.*)", "(.*)F(.*)", "(.*)G(.*)", "(.*)H(.*)", "(.*)I(.*)", "(.*)J(.*)", "(.*)K(.*)", "(.*)L(.*)", "(.*)M(.*)", "(.*)N(.*)", "(.*)O(.*)", "(.*)P(.*)", "(.*)Q(.*)", "(.*)R(.*)", "(.*)S(.*)", "(.*)T(.*)", "(.*)U(.*)", "(.*)V(.*)", "(.*)W(.*)", "(.*)X(.*)", "(.*)Y(.*)", "(.*)Z(.*)", "(.*)a(.*)", "(.*)b(.*)", "(.*)c(.*)", "(.*)d(.*)", "(.*)e(.*)", "(.*)f(.*)", "(.*)g(.*)", "(.*)h(.*)", "(.*)i(.*)", "(.*)j(.*)", "(.*)k(.*)", "(.*)l(.*)", "(.*)m(.*)", "(.*)n(.*)", "(.*)o(.*)", "(.*)p(.*)", "(.*)q(.*)", "(.*)r(.*)", "(.*)s(.*)", "(.*)t(.*)", "(.*)u(.*)", "(.*)v(.*)", "(.*)w(.*)", "(.*)x(.*)", "(.*)y(.*)", "(.*)z(.*)"], 'message_received', function(bot, message) {
+            convo.say("Thanks for contacting. I will get back to you soon :)");
+    });
+
         
     controller.hears(['(.*)create(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
                 convo.say('Hello there , I am Owasp bot and I was created by Rachit Srivastava');
-                convo.next();
-        });
-
-    });
-    controller.hears(['my(.*)name(.*)is(.*)'], 'message_received', function(bot, message) {
-
-        let str = message.replace('my name is ','');
-        bot.startConversation(message, function(err, convo) {
-                convo.say(`Hello ${str} How are you today ?`);
                 convo.next();
         });
 
@@ -69,7 +65,7 @@ module.exports = function(controller) {
 
             // create a path for when a user says YES
             convo.addMessage({
-                    text: 'How wonderful!!\nSo owasp is a ....... ,'
+                    text: 'How wonderful!!\nSo owasp is a techinical socirty of thapar aiming at improving the coding skills of its members and conduction various events revolving around the tech world :),'
             },'yes_thread');
 
             // create a path for when a user says NO
@@ -128,19 +124,6 @@ module.exports = function(controller) {
     // controller.hears(true, async (bot, message) => {
     //     await bot.reply(message, 'I heard "foo" via a function test');
     // });
-    // controller.hears(["(.*)A(.*)", "(.*)B(.*)", "(.*)C(.*)", "(.*)D(.*)", "(.*)E(.*)", "(.*)F(.*)", "(.*)G(.*)", "(.*)H(.*)", "(.*)I(.*)", "(.*)J(.*)", "(.*)K(.*)", "(.*)L(.*)", "(.*)M(.*)", "(.*)N(.*)", "(.*)O(.*)", "(.*)P(.*)", "(.*)Q(.*)", "(.*)R(.*)", "(.*)S(.*)", "(.*)T(.*)", "(.*)U(.*)", "(.*)V(.*)", "(.*)W(.*)", "(.*)X(.*)", "(.*)Y(.*)", "(.*)Z(.*)", "(.*)a(.*)", "(.*)b(.*)", "(.*)c(.*)", "(.*)d(.*)", "(.*)e(.*)", "(.*)f(.*)", "(.*)g(.*)", "(.*)h(.*)", "(.*)i(.*)", "(.*)j(.*)", "(.*)k(.*)", "(.*)l(.*)", "(.*)m(.*)", "(.*)n(.*)", "(.*)o(.*)", "(.*)p(.*)", "(.*)q(.*)", "(.*)r(.*)", "(.*)s(.*)", "(.*)t(.*)", "(.*)u(.*)", "(.*)v(.*)", "(.*)w(.*)", "(.*)x(.*)", "(.*)y(.*)", "(.*)z(.*)"], 'message_received', function(bot, message) {
-    //             convo.say("Thanks for contacting. I will get back to you soon :)");
-    //     });
-
     
 
-
 };
-
-// function check(message)
-// {
-//     console.log(message);
-//     if(message == "(.*)name(.*)")
-//     return true;
-//     else return false;
-// }
