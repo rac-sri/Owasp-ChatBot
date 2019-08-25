@@ -16,6 +16,11 @@ module.exports = function(controller) {
 
     });
 
+    controller.on('message_received', function(bot, message) {
+        if(message.text)
+        bot.reply("Thanks , I will get back to you soon");
+    });
+
     controller.on('sticker_received', function(bot, message) {
         bot.reply(message, 'Cool sticker.');
     });
