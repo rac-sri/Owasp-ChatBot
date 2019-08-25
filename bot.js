@@ -1,37 +1,89 @@
+//  __   __  ___        ___
+// |__) /  \  |  |__/ |  |  
+// |__) \__/  |  |  \ |  |  
 
-var env = require('node-env-file');
-env(__dirname + '/.env');
+// This is the main file for the OwaspBot bot.
 
-process.env.page_token="EAAGy7cubXcIBAD3WAFHRdQ0YmcfEcq8bsIbEltst3rNkeMySpPchPoIVNabo0GfZBceDlFuRM7za6NdlCXVdL4cFNe22oFD1tPwhK4ozZAwZBfvh7zjBl8OVopZCw5PmxSWEkzJHzaSepxjbN0y41SO3AmfKmshi3htgYIzbHgZDZD";
-process.env.verify_token="fj0923jf023jf0";
+// Import Botkit's core features
+const { Botkit } = require('botkit');
+const { BotkitCMSHelper } = require('botkit-plugin-cms');
 
-var Botkit = require('botkit');
-var debug = require('debug')('botkit:main');
+// Import a platform-specific adapter for facebook.
 
-// Create the Botkit controller, which controls all instances of the bot.
-var controller = Botkit.facebookbot({
-    // debug: true,
-    verify_token: process.env.verify_token,
-    access_token: process.env.page_token,
+const { FacebookAdapter, FacebookEventTypeMiddleware } = require('botbuilder-adapter-facebook');
+
+const { MongoDbStorage } = require('botbuilder-storage-mongodb');
+
+// Load process.env values from .env file
+require('dotenv').config();
+
+let storage = null;
+if (process.env.MONGO_URI) {
+    storage = mongoStorage = new MongoDbStorage({
+        url : process.env.MONGO_URI,
+    });
+}
+
+
+const adapter = new FacebookAdapter({
+
+    // REMOVE THIS OPTION AFTER YOU HAVE CONFIGURED YOUR APP!
+    enable_incomplete: true,
+
+    verify_token: process.env.FACEBOOK_VERIFY_TOKEN,
+    access_token: process.env.FACEBOOK_ACCESS_TOKEN,
+    app_secret: process.env.FACEBOOK_APP_SECRET,
+})
+
+// emit events based on the type of facebook event being received
+adapter.use(new FacebookEventTypeMiddleware());
+
+
+const controller = new Botkit({
+    webhook_uri: '/api/messages',
+
+    adapter: adapter,
+
+    storage
 });
 
-// Set up an Express-powered webserver to expose oauth and webhook endpoints
-var webserver = require(__dirname + '/components/express_webserver.js')(controller);
+if (process.env.cms_uri) {
+    controller.usePlugin(new BotkitCMSHelper({
+        uri: process.env.cms_uri,
+        token: process.env.cms_token,
+    }));
+}
 
-// Tell Facebook to start sending events to this application
-require(__dirname + '/components/subscribe_events.js')(controller);
+// Once the bot has booted up its internal services, you can use them to do stuff.
+controller.ready(() => {
 
-// Set up Facebook "thread settings" such as get started button, persistent menu
-require(__dirname + '/components/thread_settings.js')(controller);
+    // load traditional developer-created local custom feature modules
+    controller.loadModules(__dirname + '/features');
 
+    /* catch-all that uses the CMS to trigger dialogs */
+    if (controller.plugins.cms) {
+        controller.on('message,direct_message', async (bot, message) => {
+            let results = false;
+            results = await controller.plugins.cms.testTrigger(bot, message);
 
-// Send an onboarding message when a user activates the bot
-require(__dirname + '/components/onboarding.js')(controller);
+            if (results !== false) {
+                // do not continue middleware!
+                return false;
+            }
+        });
+    }
 
-// Load in some helpers that make running Botkit on Glitch.com better
-require(__dirname + '/components/plugin_glitch.js')(controller);
-
-var normalizedPath = require("path").join(__dirname, "skills");
-require("fs").readdirSync(normalizedPath).forEach(function(file) {
-  require("./skills/" + file)(controller);
 });
+
+
+
+controller.webserver.get('/', (req, res) => {
+
+    res.send(`This app is running Botkit ${ controller.version }.`);
+
+});
+
+
+
+
+
