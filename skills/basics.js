@@ -37,7 +37,7 @@ module.exports = function(controller) {
     // });
 
         
-    controller.hears(['(.*)create(.*)' , '(.*)created(.*)], 'message_received', function(bot, message) {
+    controller.hears(['(.*)create(.*)' , '(.*)created'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
                 convo.say('Hello there , I am Owasp bot and I was created by Rachit Srivastava');
