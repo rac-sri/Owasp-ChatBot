@@ -4,7 +4,7 @@ let responses = require('../responses/responses')
 
 module.exports = function(controller) {
 
-    controller.hears(['hello(.*)' ,'hi(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['hello(.*)' ,'hi(.*)','Hello(.*)','Hi'], 'message_received', function(bot, message) {
         bot.reply(message, responses.helloMessage);
     });
 
@@ -123,7 +123,7 @@ module.exports = function(controller) {
         });
 
     });
-    controller.hears(['.*'], 'message_received', function(bot, message) {
+    controller.hears(['*'], 'message_received', function(bot, message) {
                 convo.say("I will get back to you soon :)");
         });
 
