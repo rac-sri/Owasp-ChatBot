@@ -37,7 +37,7 @@ module.exports = function(controller) {
     // });
 
         
-    controller.hears(['(.*)create(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)create(.*)' , '(.*)created(.*)], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
                 convo.say('Hello there , I am Owasp bot and I was created by Rachit Srivastava');
@@ -55,10 +55,6 @@ module.exports = function(controller) {
         });
 
     });
-
-    controller.hears(['.*'], 'message_received', function(bot, message){
-        bot.reply(message, 'You wrote -  '+message.text);
-      });
 
 
     controller.hears(['(.*)question(.*)'], 'message_received', function(bot, message) {
@@ -121,5 +117,9 @@ module.exports = function(controller) {
         });
 
     });
+
+    controller.hears(['.*'], 'message_received', function(bot, message){
+        bot.reply(message, 'Thanks . I will get back to you shortly :)');
+      });
 
 };
