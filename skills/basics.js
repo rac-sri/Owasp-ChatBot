@@ -31,13 +31,8 @@ module.exports = function(controller) {
             });
         });
 
-
-    //     controller.hears(['(.*)A(.*)', '(.*)B(.*)', '(.*)C(.*)', "(.*)D(.*)", "(.*)E(.*)", "(.*)F(.*)", "(.*)G(.*)", "(.*)H(.*)", "(.*)I(.*)", "(.*)J(.*)", "(.*)K(.*)", "(.*)L(.*)", "(.*)M(.*)", "(.*)N(.*)", "(.*)O(.*)", "(.*)P(.*)", "(.*)Q(.*)", "(.*)R(.*)", "(.*)S(.*)", "(.*)T(.*)", "(.*)U(.*)", "(.*)V(.*)", "(.*)W(.*)", "(.*)X(.*)", "(.*)Y(.*)", "(.*)Z(.*)", "(.*)a(.*)", "(.*)b(.*)", "(.*)c(.*)", "(.*)d(.*)", "(.*)e(.*)", "(.*)f(.*)", "(.*)g(.*)", "(.*)h(.*)", "(.*)i(.*)", "(.*)j(.*)", "(.*)k(.*)", "(.*)l(.*)", "(.*)m(.*)", "(.*)n(.*)", "(.*)o(.*)", "(.*)p(.*)", "(.*)q(.*)", "(.*)r(.*)", "(.*)s(.*)", "(.*)t(.*)", "(.*)u(.*)", "(.*)v(.*)", "(.*)w(.*)", "(.*)x(.*)", "(.*)y(.*)", "(.*)z(.*)"], 'message_received', function(bot, message) {
-    //         convo.say("Thanks for contacting. I will get back to you soon :)");
-    // });
-
         
-    controller.hears(['(.*)create(.*)' , '(.*)created'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)create(.*)' , '(.*)created(.*) , (.*)creator(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
                 convo.say('Hello there , I am Owasp bot and I was created by Rachit Srivastava');
@@ -46,6 +41,32 @@ module.exports = function(controller) {
 
     });
 
+    controller.hears(['(.*)fuck(.*)' , '(.*)madarchod(.*) , (.*)bhosdike(.*), (.*)gand(.*)','(.*)gandu(.*)'], 'message_received', function(bot, message) {
+
+        bot.startConversation(message, function(err, convo) {
+                convo.say('You kiss your mother with that mouth');
+                convo.next();
+        });
+
+    });
+
+    controller.hears(['rachit', 'Rachit'], 'message_received', function(bot, message) {
+
+        bot.startConversation(message, function(err, convo) {
+                convo.say('Yes I know him. He is the one who created me.');
+                convo.next();
+        });
+
+    });
+
+    controller.hears(['(.*)fullform(.*)','(.*)Fullform(.*)'], 'message_received', function(bot, message) {
+
+        bot.startConversation(message, function(err, convo) {
+                convo.say("Owasp stands for Open Web Application Security Project");
+                convo.next();
+        });
+
+    });
 
     controller.hears(['(.*)name(.*)'], 'message_received', function(bot, message) {
 
@@ -56,6 +77,23 @@ module.exports = function(controller) {
 
     });
 
+    controller.hears(['(.*)society(.*)' , '(.*)about(.*)'], 'message_received', function(bot, message) {
+
+        bot.startConversation(message, function(err, convo) {
+                convo.say("Owasp is a Thapar Student Chapter which aims at training its members in different fields like web/app devolopment,cyber security etc.");
+                convo.next();
+        });
+
+    });
+
+    controller.hears(['(.*)event(.*)' , '(.*)form(.*)','(.*)venue(.*)','(.*)interview(.*)','(.*)timings(.*)','(.*)time(.*)','(.*)recruitement(.*)', '(.*)recruitements(.*)', '(.*)events(.*)','(.*)Events(.*)','(.*)Event(.*)'], 'message_received', function(bot, message) {
+
+        bot.startConversation(message, function(err, convo) {
+                convo.say("You can find information about our events from our check out our facebook page : https://www.facebook.com/owasptsc/?ref=admin_hovercard ");
+                convo.next();
+        });
+    });
+
 
     controller.hears(['(.*)question(.*)'], 'message_received', function(bot, message) {
 
@@ -63,7 +101,7 @@ module.exports = function(controller) {
 
             // create a path for when a user says YES
             convo.addMessage({
-                    text: 'How wonderful!!\nSo owasp is a techinical socirty of thapar aiming at improving the coding skills of its members and conduction various events revolving around the tech world :),'
+                    text: 'How wonderful!!\nSo owasp is a techinical society of thapar aiming at improving the coding skills of its members and conducting various events revolving around the tech world :)'
             },'yes_thread');
 
             // create a path for when a user says NO
