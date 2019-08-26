@@ -24,7 +24,7 @@ module.exports = function(controller) {
     }); 
 
 
-    controller.hears(['(.*)contact(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)contact(.*)','(.*)interview(.*)','(.*)network(.*)','(.*)hacking(.*)','(.*)workshop(.*)','(.*)web(.*)','(.*)ml(.*)','(.*)machine(.*)','(.*)learning(.*)','(.*)iot(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
            convo.say('You can contact us via these information:\n Harkrat : 8569036690 \n Sirish:9464823344');
@@ -50,7 +50,7 @@ module.exports = function(controller) {
 
     });
 
-    controller.hears(['rachit', 'Rachit'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)rachit(.*)', '(.*)Rachit(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
                 convo.say('Yes I know him. He is the one who created me.');
@@ -77,7 +77,7 @@ module.exports = function(controller) {
 
     });
 
-    controller.hears(['(.*)society(.*)' , '(.*)about(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)society(.*)' , '(.*)about(.*)','(.*)this(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
                 convo.say("Owasp is a Thapar Student Chapter which aims at training its members in different fields like web/app devolopment,cyber security etc.");
