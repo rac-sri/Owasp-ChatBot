@@ -4,6 +4,17 @@ let responses = require('../responses/responses')
 
 module.exports = function(controller) {
 
+
+    controller.hears(['(.*)society(.*)' , '(.*)about(.*)','(.*)this(.*)'], 'message_received', function(bot, message) {
+
+        bot.startConversation(message, function(err, convo) {
+                convo.say("Owasp is a Thapar Student Chapter which aims at training its members in different fields like web/app devolopment,cyber security etc.");
+                convo.next();
+        });
+
+    });
+
+
     controller.hears(['hello(.*)' ,'hi(.*)','(.*)Hello(.*)','Hi(.*)','(.*)what(.*)'], 'message_received', function(bot, message) {
         bot.reply(message, "I there! I am Owasp Bot :). Ask me anything regarding owasp society");
     });
@@ -77,14 +88,6 @@ module.exports = function(controller) {
 
     });
 
-    controller.hears(['(.*)society(.*)' , '(.*)about(.*)','(.*)this(.*)'], 'message_received', function(bot, message) {
-
-        bot.startConversation(message, function(err, convo) {
-                convo.say("Owasp is a Thapar Student Chapter which aims at training its members in different fields like web/app devolopment,cyber security etc.");
-                convo.next();
-        });
-
-    });
 
     controller.hears(['(.*)event(.*)' ,'(.*)orientation(.*)', '(.*)form(.*)','(.*)venue(.*)','(.*)interview(.*)','(.*)timings(.*)','(.*)time(.*)','(.*)recruitement(.*)', '(.*)recruitements(.*)', '(.*)events(.*)','(.*)Events(.*)','(.*)Event(.*)'], 'message_received', function(bot, message) {
 
