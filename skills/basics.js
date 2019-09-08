@@ -4,8 +4,8 @@ let responses = require('../responses/responses')
 
 module.exports = function(controller) {
 
-    controller.hears(['hello(.*)' ,'hi(.*)','Hello(.*)','Hi'], 'message_received', function(bot, message) {
-        bot.reply(message, responses.helloMessage);
+    controller.hears(['hello(.*)' ,'hi(.*)','(.*)Hello(.*)','Hi(.*)','(.*)what(.*)'], 'message_received', function(bot, message) {
+        bot.reply(message, "I there! I am Owasp Bot :). Ask me anything regarding owasp society");
     });
 
     controller.hears(['(.*)color(.*)'], 'message_received', function(bot, message) {
@@ -24,7 +24,7 @@ module.exports = function(controller) {
     }); 
 
 
-    controller.hears(['(.*)contact(.*)','(.*)interview(.*)','(.*)network(.*)','(.*)hacking(.*)','(.*)workshop(.*)','(.*)web(.*)','(.*)ml(.*)','(.*)machine(.*)','(.*)learning(.*)','(.*)iot(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)contact(.*)','(.*)interview(.*)','(.*)prereqistics(.*)','(.*)network(.*)','(.*)hacking(.*)','(.*)workshop(.*)','(.*)web(.*)','(.*)ml(.*)','(.*)machine(.*)','(.*)learning(.*)','(.*)iot(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
            convo.say('You can contact us via these information:\n Harkrat : 8569036690 \n Sirish:9464823344');
@@ -32,16 +32,16 @@ module.exports = function(controller) {
         });
 
         
-    controller.hears(['(.*)create(.*)' , '(.*)created(.*) , (.*)creator(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)create(.*)' , '(.*)created(.*) , (.*)creator(.*)' , '(.*)made(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
-                convo.say('Hello there , I am Owasp bot and I was created by Rachit Srivastava');
+                convo.say('Owasp Team');
                 convo.next();
         });
 
     });
 
-    controller.hears(['(.*)fuck(.*)' , '(.*)madarchod(.*) , (.*)bhosdike(.*), (.*)gand(.*)','(.*)gandu(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)fuck(.*)' , '(.*)madarchod(.*)' , '(.*)bhosdike(.*)', '(.*)gand(.*)','(.*)gandu(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
                 convo.say('You kiss your mother with that mouth');
@@ -86,7 +86,7 @@ module.exports = function(controller) {
 
     });
 
-    controller.hears(['(.*)event(.*)' , '(.*)form(.*)','(.*)venue(.*)','(.*)interview(.*)','(.*)timings(.*)','(.*)time(.*)','(.*)recruitement(.*)', '(.*)recruitements(.*)', '(.*)events(.*)','(.*)Events(.*)','(.*)Event(.*)'], 'message_received', function(bot, message) {
+    controller.hears(['(.*)event(.*)' ,'(.*)orientation(.*)', '(.*)form(.*)','(.*)venue(.*)','(.*)interview(.*)','(.*)timings(.*)','(.*)time(.*)','(.*)recruitement(.*)', '(.*)recruitements(.*)', '(.*)events(.*)','(.*)Events(.*)','(.*)Event(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
                 convo.say("You can find information about our events from our check out our facebook page : https://www.facebook.com/owasptsc/?ref=admin_hovercard ");
