@@ -6,7 +6,7 @@ module.exports = function(controller) {
 
     debug('Configuring Facebook thread settings...');
     controller.api.thread_settings.greeting('Hello! I\'m a Translate It bot!');
-    controller.api.thread_settings.get_started('sample_get_started_payload');
+    //controller.api.thread_settings.get_started('sample_get_started_payload');
     // controller.api.thread_settings.menu([
     //     {
     //         "locale": "default",

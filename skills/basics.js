@@ -52,19 +52,16 @@ module.exports = function(controller) {
 
     });
 
+    controller.hears(['(.*)rachit(.*)', '(.*)Rachit(.*)'], 'message_received', function(bot, message) {
+
+        bot.reply(message ,'Yes I know him. He is the one who created me.' );
+
+    });
+
     controller.hears(['(.*)fuck(.*)' , '(.*)madarchod(.*)' , '(.*)bhosdike(.*)', '(.*)gand(.*)','(.*)gandu(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
                 convo.say('You kiss your mother with that mouth');
-                convo.next();
-        });
-
-    });
-
-    controller.hears(['(.*)rachit(.*)', '(.*)Rachit(.*)'], 'message_received', function(bot, message) {
-
-        bot.startConversation(message, function(err, convo) {
-                convo.say('Yes I know him. He is the one who created me.');
                 convo.next();
         });
 
