@@ -19,6 +19,16 @@ module.exports = function(controller) {
         bot.reply(message, "I there! I am Owasp Bot :). Ask me anything regarding owasp society");
     });
 
+    controller.hears(['(.*)Hackathon(.*)' , '(.*) c (.*)' , '(.*) C (.*)'], 'message_received', function(bot, message) {
+        bot.reply(message, "Hackathon is an event in which you are required to come up with a solution to some real world problem. Hackathon is a great medium to learn and know about different innovative ideas. Hackathon is a place where you are provided with an environment to acquire new skills. Mentors will be there in case you need any kind of help in learning somthing.");
+
+    });
+
+
+    controller.hears(['(.*)hacking(.*)'], 'message_received', function(bot, message) {
+        bot.reply(message, "No Hackathon is not about hacking. Its more about finding and devoloping a solution to some real life problem.");
+    });
+
     controller.hears(['(.*)color(.*)'], 'message_received', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
